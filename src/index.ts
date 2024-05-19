@@ -17,7 +17,7 @@ const start = async () => {
   try {
     const port = Number(process.env.PORT) || 8080;
     console.log({ port, host: "0.0.0.0" });
-    await server.listen({ port });
+    await server.listen({ port, host: "0.0.0.0" });
   } catch (err) {
     console.error(err);
     process.exit(1);
