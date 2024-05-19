@@ -18,7 +18,7 @@ export class DnsService {
     console.log({ response });
 
     if (response) {
-      return { domain: `${slug}.${process.env.APP_BASE_URL}` };
+      return { domain: `https://${slug}.${process.env.APP_BASE_URL}` };
     }
     return response;
   }
