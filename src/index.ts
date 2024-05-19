@@ -1,14 +1,13 @@
 import Fastify from "fastify";
-//@ts-ignore
-import fastifyCors from "fastify-cors";
+import cors from "@fastify/cors";
 import dotenv from "dotenv";
 import { dnsRoutes } from "./routes/dns.route";
 dotenv.config();
 
 const server = Fastify();
 
-server.register(fastifyCors, {
-  origin: true,
+server.register(cors, {
+  origin: "*",
 });
 
 server.register(dnsRoutes, { prefix: "/dns" });
