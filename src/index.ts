@@ -1,12 +1,17 @@
 import Fastify from "fastify";
-import { dnsRoutes } from "./routes/dns.route";
+//@ts-ignore
+import fastifyCors from "fastify-cors";
 import dotenv from "dotenv";
+import { dnsRoutes } from "./routes/dns.route";
 dotenv.config();
 
 const server = Fastify();
 
-server.register(dnsRoutes, { prefix: "/dns" });
+server.register(fastifyCors, {
+  origin: true,
+});
 
+server.register(dnsRoutes, { prefix: "/dns" });
 server.get("/", async (request, reply) => {
   console.log(process.env.CPANEL_API_URL);
 
