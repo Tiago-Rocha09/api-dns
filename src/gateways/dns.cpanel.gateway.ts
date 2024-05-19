@@ -1,8 +1,8 @@
 import axios from "axios";
-import { dnsGateway } from "./dns.gateway";
+import { DnsGateway } from "./dns.gateway";
 import { CpanelDnsRecord } from "./types/cpanel-dns-record.type";
 
-export class DnsCpanelGateway implements dnsGateway {
+export class DnsCpanelGateway implements DnsGateway {
   async exists(name: string): Promise<boolean> {
     try {
       const response = await axios.get(

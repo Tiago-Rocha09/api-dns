@@ -1,10 +1,13 @@
-import { dnsGateway } from "../gateways/dns.gateway";
+import { DnsGateway } from "../gateways/dns.gateway";
+import { HostGateway } from "../gateways/host.gateway";
 
 export class DnsService {
-  private dnsGateway: dnsGateway;
+  private dnsGateway: DnsGateway;
+  private hostGateway: HostGateway;
 
-  constructor(dnsGateway: dnsGateway) {
+  constructor(dnsGateway: DnsGateway, hostGateway: HostGateway) {
     this.dnsGateway = dnsGateway;
+    this.hostGateway = hostGateway;
   }
 
   async createDnsRecord(slug: string) {
@@ -18,6 +21,7 @@ export class DnsService {
     console.log({ response });
 
     if (response) {
+      await this.hostGateway.addDomain(`${slug}.${process.env.APP_BASE_URL}`)
       return { domain: `https://${slug}.${process.env.APP_BASE_URL}` };
     }
     return response;
