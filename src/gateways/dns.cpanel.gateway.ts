@@ -89,7 +89,7 @@ export class DnsCpanelGateway implements dnsGateway {
               dname: name,
               ttl: 3600,
               record_type: "CNAME",
-              data: [process.env.APP_BASE_URL],
+              data: [process.env.APP_BASE_CNAME],
             }),
           },
           headers: {
