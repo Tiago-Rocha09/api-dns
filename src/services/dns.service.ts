@@ -17,6 +17,9 @@ export class DnsService {
     const response = await this.dnsGateway.create(slug);
     console.log({ response });
 
+    if (response) {
+      return { domain: `${slug}.${process.env.APP_BASE_URL}` };
+    }
     return response;
   }
 }
